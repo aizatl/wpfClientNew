@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFClientNew"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="300">
     <Grid>
-        
+        <Label Content="Name" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,13,0,0"/>
+        <TextBox  x:Name="clientName"  Text="" Height="19" Width="70" Margin="142,18,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" KeyDown="clientNameKeyDown" />
+
+        <ScrollViewer x:Name="ListOfConnectedClient" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="10,50,10,10" Height="300">
+            <ListBox x:Name="ListDisplay"  SelectionChanged="ClientSelected">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="0,5,0,5"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </ScrollViewer>
+        <Button x:Name="ExitButton" Content="Disconnect" Width="70" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Click="ExitBtnClicked"/>
     </Grid>
 </Window>
