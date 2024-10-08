@@ -42,8 +42,9 @@ namespace WPFClientNew
             if (ListDisplay.SelectedItem is ListBoxItem selectedItem)
             {
                 string clientName = selectedItem.Content.ToString();
-                // Open private chat with the clientName
-                MessageBox.Show($"Chatting with {clientName}");
+                PrivateMessage privateMessageWindow = new PrivateMessage(clientName, CurrentClientName, stream);
+                privateMessageWindow.Show();
+                this.Close();
             }
         }
 
@@ -65,11 +66,9 @@ namespace WPFClientNew
         {
             try
             {
-                TcpClient client = new TcpClient("192.168.100.11", 12345); // Update with the server IP
+                TcpClient client = new TcpClient("192.168.100.11", 12345); 
                 stream = client.GetStream();
                 SetName(CurrentClientName);
-
-                // Start listening for incoming messages after setting the name
                 await HandleIncomingMessages(stream);
             }
             catch (Exception ex)
@@ -145,21 +144,20 @@ namespace WPFClientNew
         }
         private void UpdateClientList(string[] clients)
         {
-            // Ensure we update the UI from the UI thread
             Dispatcher.Invoke(() =>
             {
-                ListDisplay.Items.Clear(); // Clear the current list
+                ListDisplay.Items.Clear(); 
 
                 foreach (string client in clients)
                 {
                     if (client == CurrentClientName)
-                        continue; // Skip adding self to the list
+                        continue; 
 
                     ListBoxItem clientItem = new ListBoxItem
                     {
                         Content = client
                     };
-                    ListDisplay.Items.Add(clientItem); // Add each client except self
+                    ListDisplay.Items.Add(clientItem);
                 }
             });
         }

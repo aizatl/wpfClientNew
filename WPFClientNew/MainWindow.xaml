@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="300">
     <Grid>
+        <Frame Name="MainFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <Label Content="Name" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,13,0,0"/>
         <TextBox  x:Name="clientName"  Text="" Height="19" Width="70" Margin="142,18,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" KeyDown="clientNameKeyDown" />
 
